@@ -2,17 +2,11 @@
 import { ref, onMounted } from 'vue'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import type { Statistic } from '@/types/Statistic'
 
 gsap.registerPlugin(ScrollTrigger)
 
-interface Stat {
-  value: number
-  suffix: string
-  label: string
-  sublabel: string
-}
-
-const stats: Stat[] = [
+const stats: Statistic[] = [
   { value: 2,   suffix: '+', label: 'Years of experience',     sublabel: 'Building for the web' },
   { value: 60,  suffix: '+', label: 'Projects shipped',        sublabel: 'Across 14 countries' },
   { value: 12,  suffix: 'M', label: 'Users reached',           sublabel: 'Through products I built' },
