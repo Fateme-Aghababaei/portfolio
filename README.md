@@ -1,42 +1,92 @@
-# my-portfolio
+# 🧑‍💻 Personal Portfolio - Vue.js
 
-This template should help get you started developing with Vue 3 in Vite.
+![Vue.js](https://img.shields.io/badge/Vue.js-3.x-4FC08D?logo=vue.js&logoColor=white)
+![Vite](https://img.shields.io/badge/Vite-646CFF?logo=vite&logoColor=white)
+![TailwindCSS](https://img.shields.io/badge/TailwindCSS-38B2AC?logo=tailwind-css&logoColor=white)
+![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-Deployed-222222?logo=github-pages)
 
-## Recommended IDE Setup
+> A modern, responsive portfolio website built with **Vue.js 3** and **Vite** — designed to showcase frontend projects, technical skills, and professional contact information. Clean UI, fast performance, and recruiter‑friendly.
 
-[VS Code](https://code.visualstudio.com/) + [Vue (Official)](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+<!-- 🔗 **Live demo:** [YOUR_PORTFOLIO_LINK](https://YOUR_PORTFOLIO_LINK) -->
 
-## Recommended Browser Setup
+---
 
-- Chromium-based browsers (Chrome, Edge, Brave, etc.):
-  - [Vue.js devtools](https://chromewebstore.google.com/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd)
-  - [Turn on Custom Object Formatter in Chrome DevTools](http://bit.ly/object-formatters)
-- Firefox:
-  - [Vue.js devtools](https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/)
-  - [Turn on Custom Object Formatter in Firefox DevTools](https://fxdx.dev/firefox-devtools-custom-object-formatters/)
+## 📌 Table of Contents
 
-## Type Support for `.vue` Imports in TS
+- [✨ Features](#-features)
+- [🛠 Tech Stack](#-tech-stack)
+- [🚀 Getting Started](#-getting-started)
+- [🧩 Customization](#-customization)
+- [📄 License](#-license)
+- [🤝 Contact](#-contact)
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
+---
 
-## Customize configuration
+## ✨ Features
 
-See [Vite Configuration Reference](https://vite.dev/config/).
+- ⚡ **Vue 3 Composition API** – reactive, modular, and maintainable code  
+- 📱 **Fully responsive** – mobile-first design, works on all devices  
+- 🧩 **Reusable components** – Hero, Projects, Skills, Contact sections  
+- 🎨 **TailwindCSS** – utility-first styling, easily customizable  
+- 📬 **Contact form** – ready to integrate with EmailJS or a backend  
+- 🚀 **Vite** – lightning-fast HMR and build times  
 
-## Project Setup
+---
 
-```sh
+## 🛠 Tech Stack
+
+| Technology       | Purpose                     |
+|------------------|-----------------------------|
+| Vue.js 3         | Frontend framework          |
+| Vite             | Build tool & dev server     |
+| TailwindCSS      | Styling & responsive design |
+
+<!-- TODO: add vue router and emailJS and gsap -->
+
+---
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- Node.js (v16 or later)
+- npm or yarn
+
+### Installation
+
+```bash
+# 1. Clone the repository
+git clone https://github.com/YOUR_GITHUB/portfolio.git
+
+# 2. Navigate into the folder
+cd portfolio
+
+# 3. Install dependencies
 npm install
-```
 
-### Compile and Hot-Reload for Development
-
-```sh
+# 4. Start development server
 npm run dev
 ```
 
-### Type-Check, Compile and Minify for Production
+Your portfolio will be available at http://localhost:5173.
 
-```sh
-npm run build
-```
+---
+
+## 📄 License
+
+This project is licensed under the **MIT License** – you are free to use, modify, and distribute it as you like.  
+See the [LICENSE](LICENSE) file for details.
+
+---
+
+## 🤝 Contact
+
+**YOUR_NAME**  
+- GitHub: [Fateme-Aghababaei](https://github.com/Fateme-Aghababaei)  
+- Email: [YOUR_EMAIL](mailto:faghababaei81@gmail.com)  
+<!-- - Portfolio: [YOUR_PORTFOLIO_LINK](https://YOUR_PORTFOLIO_LINK) -->
+
+---
+
+⭐ **If you find this portfolio useful, please give it a star!**  
+PRs and suggestions are always welcome.
