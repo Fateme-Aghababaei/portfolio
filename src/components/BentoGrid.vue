@@ -107,7 +107,12 @@ onMounted(() => {
           Projects <span class="italic text-gold">& Craft</span>
         </h2>
       </div>
-      <a href="#" class="btn-outline hidden md:inline-flex">All projects →</a>
+      <a href="#" class="btn-outline hidden md:inline-flex">
+        <span>All Projects</span>
+        <svg width="12" height="12" viewBox="0 0 14 14" fill="none" class="transition-transform group-hover:translate-x-0.5">
+          <path d="M1 7h12M7 1l6 6-6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
     </div>
 
     <!-- ======================== BENTO GRID ======================== -->
@@ -138,7 +143,7 @@ onMounted(() => {
 
       <!-- Featured project 1 (8 cols) -->
       <div
-        class="bento-animated bento-card col-span-12 md:col-span-8 relative overflow-hidden min-h-70 p-7 group cursor-pointer"
+        class="bento-animated bento-card col-span-12 md:col-span-8 relative overflow-hidden min-h-70 group cursor-pointer"
       >
         <!-- Background gradient -->
         <div class="absolute inset-0 bg-linear-to-br from-gold/10 via-transparent to-transparent" />
@@ -172,7 +177,7 @@ onMounted(() => {
 
       <!-- Project 2 (6 cols) -->
       <div
-        class="bento-animated bento-card col-span-12 md:col-span-6 relative overflow-hidden min-h-60 p-7 group cursor-pointer"
+        class="bento-animated bento-card col-span-12 md:col-span-6 relative overflow-hidden min-h-60 group cursor-pointer"
       >
         <div class="absolute inset-0 bg-linear-to-br from-lavender/10 via-transparent to-transparent" />
         <div class="absolute top-6 right-6 font-display text-8xl font-light text-white/5 select-none">02</div>
@@ -198,7 +203,7 @@ onMounted(() => {
 
       <!-- Project 3 (6 cols) -->
       <div
-        class="bento-animated bento-card col-span-12 md:col-span-6 relative overflow-hidden min-h-60 p-7 group cursor-pointer"
+        class="bento-animated bento-card col-span-12 md:col-span-6 relative overflow-hidden min-h-60 group cursor-pointer"
       >
         <div class="absolute inset-0 bg-linear-to-br from-green/10 via-transparent to-transparent" />
         <div class="absolute top-6 right-6 font-display text-8xl font-light text-white/5 select-none">03</div>
@@ -279,8 +284,11 @@ onMounted(() => {
           </div>
         </div>
 
-        <a href="#" class="mt-4 font-body text-sm text-gold hover:text-gold-light transition-colors">
-          All articles →
+        <a href="#" class="flex items-center gap-2 mt-4 font-body text-sm text-gold hover:text-gold-light transition-colors">
+          <span>All articles</span>
+          <svg width="12" height="12" viewBox="0 0 14 14" fill="none" class="transition-transform group-hover:translate-x-0.5">
+            <path d="M1 7h12M7 1l6 6-6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
         </a>
       </div>
 

@@ -67,7 +67,7 @@ onUnmounted(() => unwatch?.())
       <div class="flex items-center gap-4">
         <a href="#contact" class="btn-primary hidden md:inline-flex">
           <span>Let's talk</span>
-          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" class="transition-transform group-hover:translate-x-0.5">
+          <svg width="12" height="12" viewBox="0 0 14 14" fill="none" class="transition-transform group-hover:translate-x-0.5">
             <path d="M1 7h12M7 1l6 6-6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </a>
