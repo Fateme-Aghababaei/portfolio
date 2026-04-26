@@ -1,9 +1,10 @@
 export interface Project {
   id: number
-  title: string
-  category: string
+  name: string
   description: string
-  tags: string[]
-  year: string
-  featured?: boolean
+  url: string
+  image: string
+  category: string
+  technologies: string[]
+  date: string
 }

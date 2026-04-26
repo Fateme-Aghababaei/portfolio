@@ -50,13 +50,10 @@ onUnmounted(() => {
     <!-- Noise film grain overlay -->
     <div class="noise-overlay" aria-hidden="true" />
 
-    <!-- Custom cursor (desktop only) -->
     <CustomCursor />
 
-    <!-- Navigation -->
     <AppNav />
 
-    <!-- Page content -->
     <main>
       <HeroSection />
       <MarqueeTicker />
