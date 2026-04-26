@@ -30,10 +30,8 @@ onUnmounted(() => unwatch?.())
 <template>
   <!-- Desktop nav -->
   <header
-    class="fixed top-0 inset-x-0 z-50 transition-all duration-500"
-    :class="isScrolled
-      ? 'py-3 bg-ink/80 backdrop-blur-xl border-b border-border/60'
-      : 'py-6'"
+    class="fixed top-0 inset-x-0 z-50 transition-all duration-500 py-1"
+    :class="isScrolled ? 'bg-ink/80 backdrop-blur-xl border-b border-border/60' : ''"
   >
     <div class="w-full p-4! flex items-center justify-between">
 

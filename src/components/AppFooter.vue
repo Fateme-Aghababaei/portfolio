@@ -3,7 +3,7 @@ const year = new Date().getFullYear()
 </script>
 
 <template>
-  <footer class="border-t border-border p-8! mt-8!">
+  <footer class="border-t border-border p-8 mt-8">
       <div class="flex flex-col md:flex-row items-center justify-between gap-4">
         <p class="font-body text-xs text-muted">
           © {{ year }} Fateme Aghababaei. All rights reserved.

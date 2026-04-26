@@ -73,7 +73,7 @@ onMounted(() => {
   <section
     id="home"
     ref="heroRef"
-    class="relative min-h-screen flex items-center pt-24! pb-16! px-6! overflow-hidden"
+    class="relative min-h-screen flex items-center pt-24 pb-16 px-6 overflow-hidden"
     @mousemove="onMouseMove"
   >
     <!-- Background orbs -->
@@ -92,11 +92,11 @@ onMounted(() => {
         style="background-image: linear-gradient(rgba(46,45,53,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(46,45,53,0.5) 1px, transparent 1px); background-size: 80px 80px;" />
     </div>
 
-    <div class="relative z-10 max-w-7xl mx-auto! px-6! w-full">
+    <div class="relative z-10 max-w-7xl mx-auto px-6 w-full">
       <div class="grid lg:grid-cols-[1fr_auto] gap-16 items-center">
 
         <!-- Main content -->
-        <div class="space-y-6!">
+        <div class="space-y-6">
 
           <!-- Eyebrow -->
           <div class="hero-eyebrow flex items-center gap-3">
@@ -146,7 +146,7 @@ onMounted(() => {
         <div class="hero-badge hidden lg:flex flex-col gap-4 w-64">
 
           <!-- Status card -->
-          <div class="bento-card p-5! space-y-2!">
+          <div class="bento-card p-5 space-y-2">
             <div class="flex items-center gap-2">
               <span class="w-2 h-2 rounded-full bg-green animate-pulse" />
               <span class="eyebrow text-green">Open to work</span>
@@ -157,7 +157,7 @@ onMounted(() => {
           </div>
 
           <!-- Year + location -->
-          <div class="bento-card p-5! flex items-center justify-between">
+          <div class="bento-card p-5 flex items-center justify-between">
             <div>
               <p class="eyebrow">Based in</p>
               <p class="font-body text-cream text-sm mt-1">Isfahan, Iran</p>
@@ -170,9 +170,9 @@ onMounted(() => {
           </div>
 
           <!-- Stack badge -->
-          <div class="bento-card p-5! space-y-3!">
+          <div class="bento-card p-5 space-y-3">
             <p class="eyebrow">Primary stack</p>
-            <div class="flex flex-wrap gap-2!">
+            <div class="flex flex-wrap gap-2">
               <span v-for="t in ['Vue', 'React', 'TypeScript', 'Node', 'GSAP']" :key="t" class="tag">{{ t }}</span>
             </div>
           </div>

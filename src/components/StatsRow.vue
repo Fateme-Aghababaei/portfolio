@@ -36,11 +36,11 @@ onMounted(() => {
 </script>
 
 <template>
-  <section ref="statsEl" class="py-20! border-y border-border">
-    <div class="max-w-7xl mx-auto! px-6!">
+  <section ref="statsEl" class="py-20 border-y border-border">
+    <div class="max-w-7xl mx-auto px-6">
 
       <!-- Heading row -->
-      <div class="flex items-center gap-4 mb-14!">
+      <div class="flex items-center gap-4 mb-14">
         <div class="w-12 h-px bg-gold" />
         <p class="eyebrow">By the numbers</p>
       </div>
@@ -49,13 +49,13 @@ onMounted(() => {
         <div
           v-for="(stat, i) in stats"
           :key="stat.label"
-          class="lg:px-10! first:pl-0! last:pr-0! space-y-2!"
+          class="lg:px-10 first:pl-0 last:pr-0 space-y-2"
         >
           <div class="flex items-end gap-1">
             <span class="font-display text-6xl lg:text-7xl text-cream font-light tabular-nums">
               {{ Math.round(counts[i]) }}
             </span>
-            <span class="font-display text-4xl text-gold mb-2!">{{ stat.suffix }}</span>
+            <span class="font-display text-4xl text-gold mb-2">{{ stat.suffix }}</span>
           </div>
           <p class="font-body text-sm text-cream-2">{{ stat.label }}</p>
           <p class="font-body text-xs text-muted">{{ stat.sublabel }}</p>

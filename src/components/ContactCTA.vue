@@ -38,12 +38,12 @@ onMounted(() => {
 </script>
 
 <template>
-  <section id="contact" ref="sectionRef" class="py-24! max-w-7xl mx-auto! px-6!">
+  <section id="contact" ref="sectionRef" class="py-24 max-w-7xl mx-auto px-6">
 
     <div class="grid lg:grid-cols-2 gap-16 items-start">
 
       <!-- Left: text -->
-      <div class="space-y-6!">
+      <div class="space-y-6">
         <p class="eyebrow">Let's collaborate</p>
         <h2 class="font-display text-5xl lg:text-7xl text-cream font-light leading-none">
           Let's work<br />
@@ -55,7 +55,7 @@ onMounted(() => {
         </p>
 
         <!-- Contact info -->
-        <div class="space-y-4! pt-4!">
+        <div class="space-y-4 pt-4">
           <a href="mailto:hi@jordanvale.dev"
             class="flex items-center gap-3 group"
           >
@@ -89,7 +89,7 @@ onMounted(() => {
       </div>
 
       <!-- Right: form -->
-      <div class="bento-card p-8! space-y-6!">
+      <div class="bento-card p-8 space-y-6">
 
         <!-- Success message -->
         <Transition
@@ -99,42 +99,42 @@ onMounted(() => {
           leave-active-class="transition-all duration-200"
           leave-to-class="opacity-0"
         >
-          <div v-if="sent" class="flex items-center gap-3 p-4! rounded-xl bg-green/10 border border-green/30">
+          <div v-if="sent" class="flex items-center gap-3 p-4 rounded-xl bg-green/10 border border-green/30">
             <span class="text-green text-xl">✓</span>
             <p class="font-body text-sm text-cream">Message sent! I'll get back to you within 24 hours.</p>
           </div>
         </Transition>
 
         <div class="grid grid-cols-2 gap-4">
-          <div class="space-y-2!">
+          <div class="space-y-2">
             <label class="eyebrow text-xs">Name</label>
             <input
               v-model="form.name"
               type="text"
               placeholder="Your name"
-              class="w-full bg-ink-3 border border-border rounded-xl px-4! py-3! font-body text-sm text-cream placeholder:text-muted
+              class="w-full bg-ink-3 border border-border rounded-xl px-4 py-3 font-body text-sm text-cream placeholder:text-muted
                      focus:outline-none focus:border-gold/60 transition-colors duration-200"
             />
           </div>
-          <div class="space-y-2!">
+          <div class="space-y-2">
             <label class="eyebrow text-xs">Email</label>
             <input
               v-model="form.email"
               type="email"
               placeholder="you@example.com"
-              class="w-full bg-ink-3 border border-border rounded-xl px-4! py-3! font-body text-sm text-cream placeholder:text-muted
+              class="w-full bg-ink-3 border border-border rounded-xl px-4 py-3 font-body text-sm text-cream placeholder:text-muted
                      focus:outline-none focus:border-gold/60 transition-colors duration-200"
             />
           </div>
         </div>
 
-        <div class="space-y-2!">
+        <div class="space-y-2">
           <label class="eyebrow text-xs">Message</label>
           <textarea
             v-model="form.message"
             rows="5"
             placeholder="Tell me about your project..."
-            class="w-full bg-ink-3 border border-border rounded-xl px-4! py-3! font-body text-sm text-cream placeholder:text-muted
+            class="w-full bg-ink-3 border border-border rounded-xl px-4 py-3 font-body text-sm text-cream placeholder:text-muted
                    focus:outline-none focus:border-gold/60 transition-colors duration-200 resize-none"
           />
         </div>

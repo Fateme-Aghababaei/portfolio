@@ -91,12 +91,12 @@ onMounted(() => {
 </script>
 
 <template>
-  <section id="experience" class="py-24! max-w-7xl mx-auto! px-6!">
+  <section id="experience" class="py-24 max-w-7xl mx-auto px-6">
 
     <!-- Header -->
-    <div class="flex items-end justify-between mb-16!">
+    <div class="flex items-end justify-between mb-16">
       <div>
-        <p class="eyebrow mb-3!">Career path</p>
+        <p class="eyebrow mb-3">Career path</p>
         <h2 class="font-display text-5xl lg:text-6xl text-cream font-light">
           Work <span class="italic text-gold">Experience</span>
         </h2>
@@ -114,7 +114,7 @@ onMounted(() => {
         class="exp-line absolute left-0 md:left-55 top-0 bottom-0 w-px bg-linear-to-b from-gold via-border to-transparent origin-top hidden md:block"
       />
 
-      <div class="space-y-6!">
+      <div class="space-y-6">
         <div
           v-for="(exp, i) in experiences"
           :key="exp.company"
@@ -122,12 +122,12 @@ onMounted(() => {
         >
 
           <!-- Left: period column (desktop only) -->
-          <div class="hidden md:flex flex-col items-end pr-10! pt-7! text-right shrink-0">
-            <span class="font-mono text-xs text-muted mb-1!">{{ exp.period }}</span>
+          <div class="hidden md:flex flex-col items-end pr-10 pt-7 text-right shrink-0">
+            <span class="font-mono text-xs text-muted mb-1">{{ exp.period }}</span>
             <span class="font-body text-xs text-muted/60">{{ exp.location }}</span>
             <!-- Type badge -->
             <span
-              class="mt-3! inline-block px-2.5! py-0.5! rounded-full text-xs font-body border"
+              class="mt-3 inline-block px-2.5 py-0.5 rounded-full text-xs font-body border"
               :style="{
                 color: exp.accent,
                 borderColor: exp.accent + '40',
@@ -152,14 +152,14 @@ onMounted(() => {
 
           <!-- Right: card -->
           <div
-            class="bento-card p-7! group hover:translate-x-1 transition-transform duration-300"
+            class="bento-card p-7 group hover:translate-x-1 transition-transform duration-300"
             :style="{ '--card-accent': exp.accent }"
           >
             <!-- Mobile: period row -->
-            <div class="flex items-center justify-between mb-4! md:hidden">
+            <div class="flex items-center justify-between mb-4 md:hidden">
               <span class="font-mono text-xs text-muted">{{ exp.period }}</span>
               <span
-                class="inline-block px-2.5! py-0.5! rounded-full text-xs font-body border"
+                class="inline-block px-2.5 py-0.5 rounded-full text-xs font-body border"
                 :style="{
                   color: exp.accent,
                   borderColor: exp.accent + '40',
@@ -176,25 +176,25 @@ onMounted(() => {
 
             <div class="relative z-10">
               <!-- Role + company -->
-              <div class="flex flex-wrap items-start justify-between gap-3 mb-3!">
+              <div class="flex flex-wrap items-start justify-between gap-3 mb-3">
                 <div>
                   <h3 class="font-display text-2xl text-cream font-light leading-tight">
                     {{ exp.role }}
                   </h3>
-                  <p class="font-body text-sm mt-0.5!" :style="{ color: exp.accent }">
+                  <p class="font-body text-sm mt-0.5" :style="{ color: exp.accent }">
                     {{ exp.company }}
-                    <span class="text-muted ml-2! hidden md:inline">· {{ exp.location }}</span>
+                    <span class="text-muted ml-2 hidden md:inline">· {{ exp.location }}</span>
                   </p>
                 </div>
                 <!-- Current badge -->
-                <div v-if="exp.current" class="flex items-center gap-1.5 px-3! py-1! rounded-full bg-green/10 border border-green/30">
+                <div v-if="exp.current" class="flex items-center gap-1.5 px-3 py-1 rounded-full bg-green/10 border border-green/30">
                   <span class="w-1.5 h-1.5 rounded-full bg-green animate-pulse" />
                   <span class="font-body text-xs text-green">Current</span>
                 </div>
               </div>
 
               <!-- Description -->
-              <p class="font-body text-sm text-muted leading-relaxed mb-5!">
+              <p class="font-body text-sm text-muted leading-relaxed mb-5">
                 {{ exp.description }}
               </p>
 
