@@ -75,8 +75,7 @@ Your portfolio will be available at http://localhost:5173.
 ## 📄 License
 
 This project is licensed under the **MIT License** – you are free to use, modify, and distribute it as you like.  
-See the [LICENSE](LICENSE) file for details.
-
+See the [LICENSE](https://github.com/Fateme-Aghababaei/portfolio/blob/master/LICENSE) file for details.
 ---
 
 ## 🤝 Contact
