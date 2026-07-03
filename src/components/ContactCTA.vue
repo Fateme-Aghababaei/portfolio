@@ -26,8 +26,8 @@ async function handleSubmit() {
       import.meta.env.VITE_EMAILJS_SERVICE_ID,
       import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
       {
-        from_name: form.value.name,
-        from_email: form.value.email,
+        name: form.value.name,
+        email: form.value.email,
         message: form.value.message,
         to_email: profile.contact.email.username,
       },
@@ -119,14 +119,14 @@ onMounted(() => {
           leave-active-class="transition-all duration-200"
           leave-to-class="opacity-0"
         >
-          <div v-if="status === 'sent'" class="flex items-center gap-3 p-4 rounded-xl bg-green/10 border border-green/30">
-            <span class="text-green text-xl">✓</span>
+        <div v-if="status === 'sent'" class="flex items-center gap-3 p-4 rounded-xl bg-green/10 border border-green/30">
+          <span class="text-green text-xl">✓</span>
             <p class="font-body text-sm text-cream">Message sent! I'll get back to you within 24 hours.</p>
-          </div>
-          <div v-else-if="status === 'error'" class="flex items-center gap-3 p-4 rounded-xl bg-red-500/10 border border-red-500/30">
-            <span class="text-red-400 text-xl">✕</span>
+        </div>
+        <div v-else-if="status === 'error'" class="flex items-center gap-3 p-4 rounded-xl bg-red-500/10 border border-red-500/30">
+          <span class="text-red-400 text-xl">✕</span>
             <p class="font-body text-sm text-cream">Something went wrong. Please try emailing me directly.</p>
-          </div>
+        </div>
         </Transition>
 
         <div class="grid grid-cols-2 gap-4">

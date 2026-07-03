@@ -17,6 +17,7 @@ export interface Profile {
     collaborationPitch: string;
     location: string;
     since: number;
+    resumeUrl: string;
     availability: {
         open: boolean;
         message: string;

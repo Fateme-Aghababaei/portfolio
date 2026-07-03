@@ -66,6 +66,10 @@ onUnmounted(() => unwatch?.())
 
       <!-- CTA + Burger -->
       <div class="flex items-center gap-4">
+        <a :href="profile.resumeUrl" download class="btn-outline hidden md:inline-flex">
+          <span>Download CV</span>
+        </a>
+
         <a href="#contact" class="btn-primary hidden md:inline-flex">
           <span>Let's talk</span>
           <svg width="12" height="12" viewBox="0 0 14 14" fill="none" class="transition-transform group-hover:translate-x-0.5">
@@ -120,6 +124,7 @@ onUnmounted(() => unwatch?.())
         {{ link.label }}
       </a>
       <a href="#contact" class="btn-primary mt-4" @click="closeMenu">Let's talk</a>
+      <a :href="profile.resumeUrl" download class="btn-outline" @click="closeMenu">Download CV</a>
     </div>
   </Transition>
 </template>
