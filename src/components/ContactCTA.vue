@@ -2,6 +2,7 @@
 import { ref, onMounted } from 'vue'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import profile from '@/data/profile.json'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -50,40 +51,39 @@ onMounted(() => {
           <span class="italic text-gold">together.</span>
         </h2>
         <p class="font-body text-muted leading-relaxed max-w-sm">
-          Whether it's a greenfield product, an ambitious redesign, or a performance challenge —
-          I'm always open to meaningful collaborations.
+          {{ profile.collaborationPitch }}
         </p>
 
         <!-- Contact info -->
         <div class="space-y-4 pt-4">
-          <a href="mailto:hi@jordanvale.dev"
+          <a :href="profile.contact.email.url"
             class="flex items-center gap-3 group"
           >
             <div class="w-10 h-10 rounded-full border border-border flex items-center justify-center
                         group-hover:border-gold group-hover:bg-gold/10 transition-all duration-200">
               <span class="text-sm">✉</span>
             </div>
-            <span class="font-body text-cream-2 group-hover:text-gold transition-colors">faghababaei81@gmail.com</span>
+            <span class="font-body text-cream-2 group-hover:text-gold transition-colors">{{ profile.contact.email.username }}</span>
           </a>
 
-          <a href="https://www.linkedin.com/in/fateme-aghababaei2002/"
+          <a :href="profile.contact.linkedin.url"
             class="flex items-center gap-3 group"
           >
             <div class="w-10 h-10 rounded-full border border-border flex items-center justify-center
                         group-hover:border-gold group-hover:bg-gold/10 transition-all duration-200">
               <span class="text-sm">in</span>
             </div>
-            <span class="font-body text-cream-2 group-hover:text-gold transition-colors">fateme-aghababaei2002</span>
+            <span class="font-body text-cream-2 group-hover:text-gold transition-colors">{{ profile.contact.linkedin.username }}</span>
           </a>
 
-          <a href="https://t.me/Fateme_aq"
+          <a :href="profile.contact.telegram.url"
             class="flex items-center gap-3 group"
           >
             <div class="w-10 h-10 rounded-full border border-border flex items-center justify-center
                         group-hover:border-gold group-hover:bg-gold/10 transition-all duration-200">
               <span class="text-sm">TG</span>
             </div>
-            <span class="font-body text-cream-2 group-hover:text-gold transition-colors">@Fateme_aq</span>
+            <span class="font-body text-cream-2 group-hover:text-gold transition-colors">@{{ profile.contact.telegram.username }}</span>
           </a>
         </div>
       </div>

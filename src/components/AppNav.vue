@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue'
 import { useWindowScroll } from '@vueuse/core'
+import profile from '@/data/profile.json'
 
 const { y } = useWindowScroll()
 const isScrolled = ref(false)
@@ -39,14 +40,14 @@ onUnmounted(() => unwatch?.())
       <a href="#" class="flex items-center gap-3 group" aria-label="Home">
         <div class="w-8 h-8 rounded-lg bg-gold flex items-center justify-center
                     group-hover:scale-110 transition-transform duration-300">
-          <span class="font-display font-semibold text-ink text-sm">FA</span>
+          <span class="font-display font-semibold text-ink text-sm">{{ profile.initials }}</span>
         </div>
         <div class="flex flex-col">
           <span class="font-display text-lg text-cream hidden sm:block tracking-wide">
-            Fateme Aghababaei
+            {{ profile.name }}
           </span>
           <p class="font-body text-xs text-muted">
-              Creative Frontend Developer
+              {{ profile.primaryRole }}
           </p>
         </div>
       </a>

@@ -1,15 +1,13 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
 import { gsap } from 'gsap'
+import profile from '@/data/profile.json'
 
 const heroRef   = ref<HTMLElement | null>(null)
 const titleRef  = ref<HTMLElement | null>(null)
 const orbRef    = ref<HTMLElement | null>(null)
 
-const roles = [
-  'Frontend Developer',
-  'UI/UX Designer',
-]
+const roles = profile.roles
 const currentRole   = ref(0)
 const displayedRole = ref('')
 let   typing        = true
@@ -38,6 +36,9 @@ function typeRole() {
     }
   }
 }
+
+const [firstName, ...restName] = profile.name.split(' ')
+const lastName = restName.join(' ')
 
 // Orb follow mouse
 function onMouseMove(e: MouseEvent) {
@@ -101,16 +102,16 @@ onMounted(() => {
           <!-- Eyebrow -->
           <div class="hero-eyebrow flex items-center gap-3">
             <span class="w-8 h-px bg-gold" />
-            <span class="eyebrow">Available for work</span>
+            <span class="eyebrow">{{ profile.availability.open ? 'Available for work' : 'Not currently available' }}</span>
             <span class="w-2 h-2 rounded-full bg-green animate-pulse-gold" />
           </div>
 
           <!-- Name -->
           <div class="hero-name">
             <h1 class="font-display text-[clamp(3.5rem,10vw,8rem)] leading-none tracking-tight text-cream">
-              Fateme
+              {{ firstName }}
               <br />
-              <span class="gradient-text italic">Aghababaei</span>
+              <span class="gradient-text italic">{{ lastName }}</span>
             </h1>
           </div>
 
@@ -124,8 +125,7 @@ onMounted(() => {
 
           <!-- Description -->
           <p class="hero-desc font-body text-muted text-lg leading-relaxed max-w-xl">
-            I build interfaces where craft meets code — blending engineering precision
-            with a deep obsession for motion, typography, and visual detail.
+            {{ profile.tagline }}
           </p>
 
           <!-- CTAs -->
@@ -152,7 +152,7 @@ onMounted(() => {
               <span class="eyebrow text-green">Open to work</span>
             </div>
             <p class="font-body text-sm text-cream-2 leading-relaxed">
-              Accepting select freelance & full-time opportunities.
+              {{ profile.availability.message }}
             </p>
           </div>
 
@@ -160,12 +160,12 @@ onMounted(() => {
           <div class="bento-card p-5 flex items-center justify-between">
             <div>
               <p class="eyebrow">Based in</p>
-              <p class="font-body text-cream text-sm mt-1">Isfahan, Iran</p>
+              <p class="font-body text-cream text-sm mt-1">{{ profile.location }}</p>
             </div>
             <div class="w-px h-10 bg-border" />
             <div class="text-right">
               <p class="eyebrow">Since</p>
-              <p class="font-body text-cream text-sm mt-1">2023</p>
+              <p class="font-body text-cream text-sm mt-1">{{ profile.since }}</p>
             </div>
           </div>
 
@@ -173,7 +173,7 @@ onMounted(() => {
           <div class="bento-card p-5 space-y-3">
             <p class="eyebrow">Primary stack</p>
             <div class="flex flex-wrap gap-2">
-              <span v-for="t in ['Vue', 'React', 'TypeScript', 'Node', 'GSAP']" :key="t" class="tag">{{ t }}</span>
+              <span v-for="t in profile.primaryStack" :key="t" class="tag">{{ t }}</span>
             </div>
           </div>
 

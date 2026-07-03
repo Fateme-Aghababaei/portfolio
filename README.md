@@ -72,6 +72,34 @@ Your portfolio will be available at http://localhost:5173.
 
 ---
 
+## 🧩 Customization
+
+All personal content lives in a single file: **[`src/data/profile.json`](src/data/profile.json)**. Edit its fields and the entire site — hero, about, skills, projects, work experience, stats, articles, certificates, social links, and contact info — updates automatically. No need to touch any component code.
+
+| Field                | Used in                                  |
+|-----------------------|-------------------------------------------|
+| `name`, `initials`, `primaryRole` | Nav bar, hero, about card, footer, page `<title>` |
+| `roles`, `tagline`    | Hero typewriter effect and subtitle       |
+| `aboutMe`             | About card                                |
+| `collaborationPitch`  | Contact section intro                     |
+| `location`, `since`   | Hero badge card                           |
+| `availability`        | Hero "open to work" status                |
+| `contact`              | Contact section (email, LinkedIn, Telegram) |
+| `socialMedia`          | "Find me online" card                     |
+| `primaryStack`, `skills` | Hero stack badge and Skills card        |
+| `marqueeItems`         | Scrolling ticker                          |
+| `projects`             | Featured project cards                    |
+| `articles`             | Writing card                              |
+| `certificates`         | Certificates card                         |
+| `workExperience`       | Work experience timeline                  |
+| `statistics`           | "By the numbers" stats row                |
+
+Each `projects`, `certificates`, and `workExperience` entry has an `accent` hex color used for that item's highlight color — pick whatever fits your palette.
+
+The favicon (`public/favicon.ico`) is the only asset you'll need to swap manually.
+
+---
+
 ## 📄 License
 
 This project is licensed under the **MIT License** – you are free to use, modify, and distribute it as you like.  

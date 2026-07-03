@@ -3,15 +3,11 @@ import { ref, onMounted } from 'vue'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import type { Statistic } from '@/types/Statistic'
+import profile from '@/data/profile.json'
 
 gsap.registerPlugin(ScrollTrigger)
 
-const stats: Statistic[] = [
-  { value: 2,   suffix: '+', label: 'Years of experience',     sublabel: 'Building for the web' },
-  { value: 60,  suffix: '+', label: 'Projects shipped',        sublabel: 'Across 14 countries' },
-  { value: 12,  suffix: 'M', label: 'Users reached',           sublabel: 'Through products I built' },
-  { value: 99,  suffix: '',  label: 'Lighthouse score',        sublabel: 'Performance obsessed' },
-]
+const stats: Statistic[] = profile.statistics
 
 const counts  = ref(stats.map(() => 0))
 const statsEl = ref<HTMLElement | null>(null)
@@ -58,7 +54,7 @@ onMounted(() => {
             <span class="font-display text-4xl text-gold mb-2">{{ stat.suffix }}</span>
           </div>
           <p class="font-body text-sm text-cream-2">{{ stat.label }}</p>
-          <p class="font-body text-xs text-muted">{{ stat.sublabel }}</p>
+          <p class="font-body text-xs text-muted">{{ stat.subLabel }}</p>
         </div>
       </div>
     </div>

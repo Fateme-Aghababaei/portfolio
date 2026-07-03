@@ -9,12 +9,18 @@ import type { Statistic } from "./Statistic";
 
 export interface Profile {
     name: string;
+    initials: string;
     primaryRole: string;
     roles: string[];
-    heroDescription: string;
+    tagline: string;
     aboutMe: string;
+    collaborationPitch: string;
     location: string;
     since: number;
+    availability: {
+        open: boolean;
+        message: string;
+    };
     contact: {
         email: Contact;
         linkedin: Contact;

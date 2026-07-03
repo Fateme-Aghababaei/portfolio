@@ -2,59 +2,12 @@
 import { onMounted } from 'vue'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import type { Experience } from '@/types/Experience'
+import profile from '@/data/profile.json'
 
 gsap.registerPlugin(ScrollTrigger)
 
-const experiences = [
-  {
-    role: 'Front-End Developer & UI/UX Designer',
-    company: 'PayamPardaz',
-    type: 'Full-time',
-    period: '2025 — Present',
-    location: 'Isfahan, Iran',
-    description:
-      'Developed enterprise-grade front-end features for a Zero Trust security platform used by large organizations.',
-    highlights: ['Vue.js', 'Design system', 'GraphQL', 'Playwright'],
-    accent: '#C8943A',
-    current: true,
-  },
-  {
-    role: 'Front-End Developer & UI/UX Designer',
-    company: 'PayamPardaz',
-    type: 'Full-time',
-    period: '2025 — Present',
-    location: 'Isfahan, Iran',
-    description:
-      'Developed enterprise-grade front-end features for a Zero Trust security platform used by large organizations.',
-    highlights: ['Vue.js', 'Design system', 'GraphQL', 'Playwright'],
-    accent: '#9B8FEC',
-    current: false,
-  },
-  {
-    role: 'Front-End Mentor & Course Designer',
-    company: 'Quera',
-    type: 'Part-time',
-    period: '2025',
-    location: 'Remote',
-    description:
-      'Designed and updated various front-end courses, including HTML & CSS, Front-End Development, React, Advanced JavaScript, and TypeScript.',
-    highlights: ['React', 'TypeScript', 'Cypress'],
-    accent: '#4ADE80',
-    current: false,
-  },
-  {
-    role: 'UI/UX Design Intern',
-    company: 'International Systems Engineering and Automation Company (IRISA)',
-    type: 'Full-time',
-    period: '2023',
-    location: 'Isfahan, Iran',
-    description:
-      'Designed a mobile app for buying and selling books using the design thinking process and Improved user engagement and satisfaction through iterative design and testing.',
-    highlights: ['Figma', 'Accessibility', 'User Reseaerch'],
-    accent: '#C2BBB0',
-    current: false,
-  },
-]
+const experiences: Experience[] = profile.workExperience
 
 onMounted(() => {
   gsap.utils.toArray<HTMLElement>('.exp-card').forEach((card, i) => {
@@ -102,7 +55,7 @@ onMounted(() => {
         </h2>
       </div>
       <span class="hidden md:block font-body text-sm text-muted">
-        {{ experiences.length }} positions · {{ new Date().getFullYear() - 2023 }} years
+        {{ experiences.length }} positions · {{ new Date().getFullYear() - profile.since }} years
       </span>
     </div>
 
@@ -117,7 +70,7 @@ onMounted(() => {
       <div class="space-y-6">
         <div
           v-for="(exp, i) in experiences"
-          :key="exp.company"
+          :key="exp.id"
           class="exp-card relative grid md:grid-cols-[220px_1fr] gap-0 md:gap-12"
         >
 

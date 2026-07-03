@@ -1,16 +1,8 @@
 <script setup lang="ts">
 // Marquee with duplicated content for seamless looping
+import profile from '@/data/profile.json'
 
-const items = [
-  'Frontend Engineering',
-  'Creative Development',
-  'Motion Design',
-  'UI Architecture',
-  'Design Systems',
-  'WebGL Experiences',
-  'Performance Optimization',
-  'Interaction Design',
-]
+const items = profile.marqueeItems
 
 // Duplicate for seamless loop
 const repeated = [...items, ...items]
