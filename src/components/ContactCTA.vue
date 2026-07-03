@@ -2,6 +2,7 @@
 import { ref, onMounted } from 'vue'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import emailjs from '@emailjs/browser'
 import profile from '@/data/profile.json'
 
 gsap.registerPlugin(ScrollTrigger)
@@ -14,13 +15,32 @@ const form = ref({
   message: '',
 })
 
-const sent = ref(false)
+type Status = 'idle' | 'sending' | 'sent' | 'error'
+const status = ref<Status>('idle')
 
-function handleSubmit() {
-  // Demo: just toggle sent state
-  sent.value = true
-  setTimeout(() => { sent.value = false }, 4000)
-  form.value = { name: '', email: '', message: '' }
+async function handleSubmit() {
+  status.value = 'sending'
+
+  try {
+    await emailjs.send(
+      import.meta.env.VITE_EMAILJS_SERVICE_ID,
+      import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+      {
+        from_name: form.value.name,
+        from_email: form.value.email,
+        message: form.value.message,
+        to_email: profile.contact.email.username,
+      },
+      { publicKey: import.meta.env.VITE_EMAILJS_PUBLIC_KEY }
+    )
+    status.value = 'sent'
+    form.value = { name: '', email: '', message: '' }
+  } catch (err) {
+    console.error('Failed to send message:', err)
+    status.value = 'error'
+  } finally {
+    setTimeout(() => { status.value = 'idle' }, 5000)
+  }
 }
 
 onMounted(() => {
@@ -89,9 +109,9 @@ onMounted(() => {
       </div>
 
       <!-- Right: form -->
-      <div class="bento-card p-8 space-y-6">
+      <form class="bento-card p-8 space-y-6" @submit.prevent="handleSubmit">
 
-        <!-- Success message -->
+        <!-- Status messages -->
         <Transition
           enter-active-class="transition-all duration-400 ease-out"
           enter-from-class="opacity-0 scale-95"
@@ -99,9 +119,13 @@ onMounted(() => {
           leave-active-class="transition-all duration-200"
           leave-to-class="opacity-0"
         >
-          <div v-if="sent" class="flex items-center gap-3 p-4 rounded-xl bg-green/10 border border-green/30">
+          <div v-if="status === 'sent'" class="flex items-center gap-3 p-4 rounded-xl bg-green/10 border border-green/30">
             <span class="text-green text-xl">✓</span>
             <p class="font-body text-sm text-cream">Message sent! I'll get back to you within 24 hours.</p>
+          </div>
+          <div v-else-if="status === 'error'" class="flex items-center gap-3 p-4 rounded-xl bg-red-500/10 border border-red-500/30">
+            <span class="text-red-400 text-xl">✕</span>
+            <p class="font-body text-sm text-cream">Something went wrong. Please try emailing me directly.</p>
           </div>
         </Transition>
 
@@ -111,6 +135,7 @@ onMounted(() => {
             <input
               v-model="form.name"
               type="text"
+              required
               placeholder="Your name"
               class="w-full bg-ink-3 border border-border rounded-xl px-4 py-3 font-body text-sm text-cream placeholder:text-muted
                      focus:outline-none focus:border-gold/60 transition-colors duration-200"
@@ -121,6 +146,7 @@ onMounted(() => {
             <input
               v-model="form.email"
               type="email"
+              required
               placeholder="you@example.com"
               class="w-full bg-ink-3 border border-border rounded-xl px-4 py-3 font-body text-sm text-cream placeholder:text-muted
                      focus:outline-none focus:border-gold/60 transition-colors duration-200"
@@ -133,6 +159,7 @@ onMounted(() => {
           <textarea
             v-model="form.message"
             rows="5"
+            required
             placeholder="Tell me about your project..."
             class="w-full bg-ink-3 border border-border rounded-xl px-4 py-3 font-body text-sm text-cream placeholder:text-muted
                    focus:outline-none focus:border-gold/60 transition-colors duration-200 resize-none"
@@ -140,16 +167,17 @@ onMounted(() => {
         </div>
 
         <button
-          @click="handleSubmit"
-          class="btn-primary w-full justify-center group"
+          type="submit"
+          :disabled="status === 'sending'"
+          class="btn-primary w-full justify-center group disabled:opacity-60 disabled:cursor-not-allowed"
         >
-          <span>Send message</span>
+          <span>{{ status === 'sending' ? 'Sending…' : 'Send message' }}</span>
           <svg width="12" height="12" viewBox="0 0 14 14" fill="none"
                class="group-hover:translate-x-1 transition-transform">
             <path d="M1 7h12M7 1l6 6-6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </button>
-      </div>
+      </form>
     </div>
   </section>
 </template>

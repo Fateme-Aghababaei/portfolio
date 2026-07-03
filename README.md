@@ -98,6 +98,22 @@ Each `projects`, `certificates`, and `workExperience` entry has an `accent` hex 
 
 The favicon (`public/favicon.ico`) is the only asset you'll need to swap manually.
 
+### 📬 Making the contact form work
+
+The contact form sends email via [EmailJS](https://www.emailjs.com) directly from the browser — no backend required, so it works on GitHub Pages.
+
+1. Create a free account at [emailjs.com](https://www.emailjs.com).
+2. Add an **Email Service** (e.g. Gmail) and note its Service ID.
+3. Create an **Email Template** with `from_name`, `from_email`, `message`, and `to_email` variables, and note its Template ID.
+4. Copy your **Public Key** from Account → General.
+5. Copy `.env.example` to `.env` and fill in the three values:
+
+   ```bash
+   cp .env.example .env
+   ```
+
+6. Restart the dev server. Submitted messages will now arrive in your inbox.
+
 ---
 
 ## 📄 License

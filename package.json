@@ -9,12 +9,13 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@emailjs/browser": "^4.4.1",
     "@tailwindcss/vite": "^4.2.4",
-    "tailwindcss": "^4.2.4",
-    "gsap": "^3.12.5",
     "@vueuse/core": "^10.9.0",
-    "vue": "^3.4.27",
-    "lenis": "^1.1.9"
+    "gsap": "^3.12.5",
+    "lenis": "^1.1.9",
+    "tailwindcss": "^4.2.4",
+    "vue": "^3.4.27"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.0.4",
