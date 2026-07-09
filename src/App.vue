@@ -1,22 +1,25 @@
 <script setup lang="ts">
-import { onMounted, onUnmounted } from 'vue'
+import { onMounted, onUnmounted, nextTick, watch } from 'vue'
+import { useRoute } from 'vue-router'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import Lenis from 'lenis'
 
 import CustomCursor from './components/CustomCursor.vue'
 import AppNav       from './components/AppNav.vue'
-import HeroSection  from './components/HeroSection.vue'
-import MarqueeTicker from './components/MarqueeTicker.vue'
-import BentoGrid    from './components/BentoGrid.vue'
-import StatsRow     from './components/StatsRow.vue'
-import ContactCTA   from './components/ContactCTA.vue'
 import AppFooter    from './components/AppFooter.vue'
-import WorkExperience    from './components/WorkExperience.vue'
 
 gsap.registerPlugin(ScrollTrigger)
 
+const route = useRoute()
+
 let lenis: Lenis | null = null
+
+// Re-measure scroll triggers once the new route's content has mounted,
+// since each page has a different layout/height.
+watch(() => route.fullPath, () => {
+  nextTick(() => ScrollTrigger.refresh())
+})
 
 onMounted(() => {
   // ── Lenis smooth scroll ──────────────────────────
@@ -54,14 +57,7 @@ onUnmounted(() => {
 
     <AppNav />
 
-    <main>
-      <HeroSection />
-      <MarqueeTicker />
-      <BentoGrid />
-      <WorkExperience />
-      <StatsRow />
-      <ContactCTA />
-    </main>
+    <RouterView />
 
     <AppFooter />
   </div>

@@ -19,6 +19,16 @@ coverage
 .env.*
 !.env.example
 
+# Personal portfolio data — copy profile.example.json to profile.json and
+# fill in your own info. Keeps your real contact details out of git.
+src/data/profile.json
+
+# Personal project screenshots and resume — drop your own files in here
+# (see README); folder structure is kept via .gitkeep, contents are not.
+public/projects/*
+!public/projects/.gitkeep
+public/resume.pdf
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

@@ -1,0 +1,93 @@
+{
+    "name": "Your Name",
+    "initials": "YN",
+    "primaryRole": "Creative Frontend Developer",
+    "roles": ["Frontend Developer", "UI/UX Designer"],
+    "tagline": "One or two sentences that sit under the animated role in the hero — what you build and how you approach it.",
+    "aboutMe": "A short paragraph about your background, experience, and what makes your work distinct. Shown in the About card.",
+    "collaborationPitch": "A sentence inviting visitors to reach out — shown above the contact form.",
+    "location": "Your City, Your Country",
+    "since": 2023,
+    "resumeUrl": "/resume.pdf",
+    "availability": {
+        "open": true,
+        "message": "Accepting select freelance & full-time opportunities."
+    },
+    "contact": {
+        "email": { "url": "mailto:you@example.com", "username": "you@example.com", "display": "Email", "icon": "email" },
+        "linkedin": { "url": "https://www.linkedin.com/in/your-handle/", "username": "your-handle", "display": "LinkedIn", "icon": "linkedin" },
+        "telegram": { "url": "https://t.me/your_handle", "username": "your_handle", "display": "Telegram", "icon": "telegram" },
+        "github": { "url": "https://github.com/your-handle", "username": "@your-handle", "display": "GitHub", "icon": "github" }
+    },
+    "primaryStack": ["Vue.js", "React.js", "TypeScript"],
+    "skills": [
+        { "category": "Web Development", "color": "#C8943A", "items": ["Vue.js", "React.js", "TypeScript", "HTML5", "CSS3", "Tailwind CSS"] },
+        { "category": "Testing Tools", "color": "#9B8FEC", "items": ["Playwright", "Cypress", "Jest"] },
+        { "category": "Tools & Collaboration", "color": "#4ADE80", "items": ["Git", "GitHub", "Agile/Scrum"] },
+        { "category": "UI/UX Design", "color": "#E8BF6A", "items": ["Figma", "Photoshop"] }
+    ],
+    "marqueeItems": [
+        "Frontend Engineering",
+        "Creative Development",
+        "Motion Design",
+        "UI Architecture",
+        "Design Systems",
+        "Performance Optimization"
+    ],
+    "projects": [
+        {
+            "id": 1,
+            "name": "Example Project",
+            "description": "One or two sentences describing what this project is and the problem it solves.",
+            "url": "https://example.com",
+            "githubUrl": "https://github.com/your-handle/example-project",
+            "category": "Website",
+            "date": "2026",
+            "technologies": ["HTML", "Tailwind CSS", "JavaScript"],
+            "accent": "#C8943A",
+            "thumbnail": "/projects/example-cover.jpg",
+            "image": "/projects/example-hero.jpg",
+            "gallery": ["/projects/example-1.jpg", "/projects/example-2.jpg"],
+            "highlights": [
+                "A key feature or contribution worth calling out",
+                "Another notable detail about how you built it"
+            ]
+        },
+        {
+            "id": 2,
+            "name": "Another Project",
+            "description": "Projects without thumbnail/image/gallery/highlights fall back to a plain accent-colored card — all four fields are optional.",
+            "url": "",
+            "category": "Frontend",
+            "date": "2025",
+            "technologies": ["React.js"],
+            "accent": "#9B8FEC"
+        }
+    ],
+    "articles": [
+        {
+            "id": 1,
+            "title": "An article or publication you've written",
+            "url": "https://example.com/your-article",
+            "date": "Jan 2026"
+        }
+    ],
+    "certificates": [
+        { "id": 1, "title": "A Certificate Title", "issuer": "Issuing Org", "date": "2024", "url": "https://example.com/certificate", "type": "Professional", "accent": "#C8943A" }
+    ],
+    "workExperience": [
+        {
+            "id": 1,
+            "role": "Your Job Title",
+            "company": "Company Name",
+            "url": "https://example.com",
+            "type": "Full-time",
+            "period": "2025 — Present",
+            "location": "Your City, Your Country",
+            "description": "What you did in this role, in a sentence or two.",
+            "highlights": ["Key Skill", "Another Skill"],
+            "accent": "#C8943A",
+            "current": true
+        }
+    ]
+}

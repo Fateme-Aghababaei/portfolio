@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted } from 'vue'
+import { onMounted, onUnmounted } from 'vue'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import type { Experience } from '@/types/Experience'
@@ -9,7 +9,10 @@ gsap.registerPlugin(ScrollTrigger)
 
 const experiences: Experience[] = profile.workExperience
 
+let ctx: gsap.Context
+
 onMounted(() => {
+  ctx = gsap.context(() => {
   gsap.utils.toArray<HTMLElement>('.exp-card').forEach((card, i) => {
     gsap.fromTo(
       card,
@@ -40,7 +43,10 @@ onMounted(() => {
       },
     }
   )
+  })
 })
+
+onUnmounted(() => ctx?.revert())
 </script>
 
 <template>

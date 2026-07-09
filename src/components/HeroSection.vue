@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, onUnmounted } from 'vue'
 import { gsap } from 'gsap'
 import profile from '@/data/profile.json'
 
@@ -54,19 +54,28 @@ function onMouseMove(e: MouseEvent) {
   })
 }
 
+let ctx: gsap.Context
+
 onMounted(() => {
-  // Page-load animation timeline
-  const tl = gsap.timeline({ defaults: { ease: 'power3.out' } })
-  tl.from('.hero-eyebrow', { y: 20, opacity: 0, duration: 0.6 })
-    .from('.hero-name',    { y: 60, opacity: 0, duration: 0.9 }, '-=0.3')
-    .from('.hero-role',    { y: 30, opacity: 0, duration: 0.7 }, '-=0.4')
-    .from('.hero-desc',    { y: 30, opacity: 0, duration: 0.7 }, '-=0.4')
-    .from('.hero-ctas',    { y: 20, opacity: 0, duration: 0.6 }, '-=0.3')
-    .from('.hero-badge',   { scale: 0.8, opacity: 0, duration: 0.5 }, '-=0.2')
-    .from('.hero-scroll',  { opacity: 0, duration: 0.6 }, '-=0.1')
+  ctx = gsap.context(() => {
+    // Page-load animation timeline
+    const tl = gsap.timeline({ defaults: { ease: 'power3.out' } })
+    tl.from('.hero-eyebrow', { y: 20, opacity: 0, duration: 0.6 })
+      .from('.hero-name',    { y: 60, opacity: 0, duration: 0.9 }, '-=0.3')
+      .from('.hero-role',    { y: 30, opacity: 0, duration: 0.7 }, '-=0.4')
+      .from('.hero-desc',    { y: 30, opacity: 0, duration: 0.7 }, '-=0.4')
+      .from('.hero-ctas',    { y: 20, opacity: 0, duration: 0.6 }, '-=0.3')
+      .from('.hero-badge',   { scale: 0.8, opacity: 0, duration: 0.5 }, '-=0.2')
+      .from('.hero-scroll',  { opacity: 0, duration: 0.6 }, '-=0.1')
+  }, heroRef)
 
   // Start typewriter
-  setTimeout(typeRole, 1200)
+  typeTimer = setTimeout(typeRole, 1200)
+})
+
+onUnmounted(() => {
+  ctx?.revert()
+  clearTimeout(typeTimer)
 })
 </script>
 

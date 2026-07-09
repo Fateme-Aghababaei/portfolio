@@ -15,7 +15,8 @@
     "gsap": "^3.12.5",
     "lenis": "^1.1.9",
     "tailwindcss": "^4.2.4",
-    "vue": "^3.4.27"
+    "vue": "^3.4.27",
+    "vue-router": "^4.6.4"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.0.4",

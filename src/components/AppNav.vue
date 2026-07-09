@@ -8,11 +8,10 @@ const isScrolled = ref(false)
 const menuOpen   = ref(false)
 
 const links = [
-  { label: 'Work',      href: '#work' },
-  { label: 'About',     href: '#about' },
-  { label: 'Skills',    href: '#skills' },
-  { label: 'Writing',   href: '#writing' },
-  { label: 'Contact',   href: '#contact' },
+  { label: 'Projects',      href: '/#work' },
+  { label: 'Skills',    href: '/#skills' },
+  { label: 'Work Experience',    href: '/#experience' },
+  { label: 'Contact',   href: '/#contact' },
 ]
 
 function toggleMenu() { menuOpen.value = !menuOpen.value }
@@ -37,7 +36,7 @@ onUnmounted(() => unwatch?.())
     <div class="w-full p-4! flex items-center justify-between">
 
       <!-- Logo -->
-      <a href="#" class="flex items-center gap-3 group" aria-label="Home">
+      <router-link to="/" class="flex items-center gap-3 group" aria-label="Home">
         <div class="w-8 h-8 rounded-lg bg-gold flex items-center justify-center
                     group-hover:scale-110 transition-transform duration-300">
           <span class="font-display font-semibold text-ink text-sm">{{ profile.initials }}</span>
@@ -50,18 +49,18 @@ onUnmounted(() => unwatch?.())
               {{ profile.primaryRole }}
           </p>
         </div>
-      </a>
+      </router-link>
 
       <!-- Nav links -->
       <nav class="hidden md:flex items-center gap-8">
-        <a
+        <router-link
           v-for="link in links"
           :key="link.label"
-          :href="link.href"
+          :to="link.href"
           class="nav-link"
         >
           {{ link.label }}
-        </a>
+        </router-link>
       </nav>
 
       <!-- CTA + Burger -->
@@ -70,12 +69,12 @@ onUnmounted(() => unwatch?.())
           <span>Download CV</span>
         </a>
 
-        <a href="#contact" class="btn-primary hidden md:inline-flex">
+        <router-link to="/#contact" class="btn-primary hidden md:inline-flex">
           <span>Let's talk</span>
           <svg width="12" height="12" viewBox="0 0 14 14" fill="none" class="transition-transform group-hover:translate-x-0.5">
             <path d="M1 7h12M7 1l6 6-6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
-        </a>
+        </router-link>
 
         <!-- Burger -->
         <button
@@ -114,16 +113,16 @@ onUnmounted(() => unwatch?.())
       v-if="menuOpen"
       class="fixed inset-0 z-40 bg-ink/95 backdrop-blur-2xl flex flex-col items-center justify-center gap-10 md:hidden"
     >
-      <a
+      <router-link
         v-for="link in links"
         :key="link.label"
-        :href="link.href"
+        :to="link.href"
         class="font-display text-4xl text-cream hover:text-gold transition-colors duration-200"
         @click="closeMenu"
       >
         {{ link.label }}
-      </a>
-      <a href="#contact" class="btn-primary mt-4" @click="closeMenu">Let's talk</a>
+      </router-link>
+      <router-link to="/#contact" class="btn-primary mt-4" @click="closeMenu">Let's talk</router-link>
       <a :href="profile.resumeUrl" download class="btn-outline" @click="closeMenu">Download CV</a>
     </div>
   </Transition>
