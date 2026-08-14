@@ -79,18 +79,26 @@
       <div v-if="project.gallery?.length" class="mt-16">
         <p class="eyebrow mb-4">Gallery</p>
         <div class="grid sm:grid-cols-2 gap-4">
-          <a
+          <button
             v-for="(shot, i) in project.gallery"
             :key="shot"
-            :href="shot"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="block rounded-xl overflow-hidden border border-border hover:border-gold/40 transition-colors duration-200"
+            type="button"
+            class="block rounded-xl overflow-hidden border border-border hover:border-gold/40 transition-colors duration-200 cursor-pointer"
+            @click="openGallery(i)"
           >
             <ProjectImage :src="shot" :alt="`${project.name} screenshot ${i + 1}`" img-class="w-full h-full object-cover" />
-          </a>
+          </button>
         </div>
       </div>
+
+      <GalleryLightbox
+        :open="lightboxOpen"
+        :images="project.gallery"
+        :index="lightboxIndex"
+        :alt="project.name"
+        @close="lightboxOpen = false"
+        @update:index="lightboxIndex = $event"
+      />
 
       <!-- Prev / Next -->
       <div class="grid grid-cols-2 gap-4 mt-20 pt-10 border-t border-border">
@@ -117,13 +125,22 @@
 </template>
 
 <script setup lang="ts">
-import { computed, onMounted } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 import { gsap } from 'gsap'
 import type { Project } from '@/types/Project'
 import profile from '@/data/profile.json'
 import ProjectImage from '@/components/ProjectImage.vue'
+import GalleryLightbox from '@/components/GalleryLightbox.vue'
 
 const props = defineProps<{ id: string }>()
+
+const lightboxOpen = ref(false)
+const lightboxIndex = ref(0)
+
+function openGallery(i: number) {
+  lightboxIndex.value = i
+  lightboxOpen.value = true
+}
 
 const projects: Project[] = profile.projects
 
