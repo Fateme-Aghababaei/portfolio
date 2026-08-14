@@ -1,3 +1,8 @@
+<template>
+  <div ref="cursorDot"  class="cursor-dot"  />
+  <div ref="cursorRing" class="cursor-ring" :class="{ 'is-hovered': isHovered }" />
+</template>
+
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue'
 import { useMouseInElement, useMouse } from '@vueuse/core'
@@ -54,8 +59,3 @@ onUnmounted(() => {
   cancelAnimationFrame(animId)
 })
 </script>
-
-<template>
-  <div ref="cursorDot"  class="cursor-dot"  />
-  <div ref="cursorRing" class="cursor-ring" :class="{ 'is-hovered': isHovered }" />
-</template>

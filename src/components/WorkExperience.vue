@@ -1,54 +1,3 @@
-<script setup lang="ts">
-import { onMounted, onUnmounted } from 'vue'
-import { gsap } from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import type { Experience } from '@/types/Experience'
-import profile from '@/data/profile.json'
-
-gsap.registerPlugin(ScrollTrigger)
-
-const experiences: Experience[] = profile.workExperience
-
-let ctx: gsap.Context
-
-onMounted(() => {
-  ctx = gsap.context(() => {
-  gsap.utils.toArray<HTMLElement>('.exp-card').forEach((card, i) => {
-    gsap.fromTo(
-      card,
-      { x: -40, opacity: 0 },
-      {
-        x: 0,
-        opacity: 1,
-        duration: 0.7,
-        ease: 'power3.out',
-        scrollTrigger: {
-          trigger: card,
-          start: 'top 88%',
-        },
-      }
-    )
-  })
-
-  gsap.fromTo(
-    '.exp-line',
-    { scaleY: 0 },
-    {
-      scaleY: 1,
-      duration: 1.5,
-      ease: 'power3.out',
-      scrollTrigger: {
-        trigger: '.exp-timeline',
-        start: 'top 80%',
-      },
-    }
-  )
-  })
-})
-
-onUnmounted(() => ctx?.revert())
-</script>
-
 <template>
   <section id="experience" class="py-24 max-w-7xl mx-auto px-6">
 
@@ -173,3 +122,54 @@ onUnmounted(() => ctx?.revert())
     </div>
   </section>
 </template>
+
+<script setup lang="ts">
+import { onMounted, onUnmounted } from 'vue'
+import { gsap } from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import type { Experience } from '@/types/Experience'
+import profile from '@/data/profile.json'
+
+gsap.registerPlugin(ScrollTrigger)
+
+const experiences: Experience[] = profile.workExperience
+
+let ctx: gsap.Context
+
+onMounted(() => {
+  ctx = gsap.context(() => {
+  gsap.utils.toArray<HTMLElement>('.exp-card').forEach((card, i) => {
+    gsap.fromTo(
+      card,
+      { x: -40, opacity: 0 },
+      {
+        x: 0,
+        opacity: 1,
+        duration: 0.7,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: card,
+          start: 'top 88%',
+        },
+      }
+    )
+  })
+
+  gsap.fromTo(
+    '.exp-line',
+    { scaleY: 0 },
+    {
+      scaleY: 1,
+      duration: 1.5,
+      ease: 'power3.out',
+      scrollTrigger: {
+        trigger: '.exp-timeline',
+        start: 'top 80%',
+      },
+    }
+  )
+  })
+})
+
+onUnmounted(() => ctx?.revert())
+</script>

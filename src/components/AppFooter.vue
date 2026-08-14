@@ -1,9 +1,3 @@
-<script setup lang="ts">
-import profile from '@/data/profile.json'
-
-const year = new Date().getFullYear()
-</script>
-
 <template>
   <footer class="border-t border-border p-8 mt-8">
       <div class="flex flex-col md:flex-row items-center justify-between gap-4">
@@ -16,3 +10,9 @@ const year = new Date().getFullYear()
       </div>
   </footer>
 </template>
+
+<script setup lang="ts">
+import profile from '@/data/profile.json'
+
+const year = new Date().getFullYear()
+</script>

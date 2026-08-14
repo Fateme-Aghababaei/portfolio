@@ -1,61 +1,3 @@
-<script setup lang="ts">
-import { ref, onMounted, onUnmounted } from 'vue'
-import { gsap } from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import type { Project } from '@/types/Project'
-import type { SkillGroup } from '@/types/SkillGroup'
-import profile from '@/data/profile.json'
-
-gsap.registerPlugin(ScrollTrigger)
-
-const projects: Project[] = profile.projects
-const skillGroups: SkillGroup[] = profile.skills
-const articles = profile.articles
-const certificates = profile.certificates
-
-const gridRef = ref<HTMLElement | null>(null)
-let ctx: gsap.Context
-
-onMounted(() => {
-  ctx = gsap.context(() => {
-    gsap.utils.toArray<HTMLElement>('.bento-animated').forEach((card, i) => {
-      gsap.fromTo(
-        card,
-        { y: 50, opacity: 0 },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 0.7,
-          delay: i * 0.07,
-          ease: 'power3.out',
-          scrollTrigger: {
-            trigger: card,
-            start: 'top 88%',
-          },
-        }
-      )
-    })
-
-    // Skill bars animate in
-    gsap.utils.toArray<HTMLElement>('.skill-bar-fill').forEach((bar) => {
-      ScrollTrigger.create({
-        trigger: bar,
-        start: 'top 85%',
-        onEnter: () => {
-          gsap.to(bar, {
-            scaleX: 1,
-            duration: 1,
-            ease: 'power3.out',
-          })
-        },
-      })
-    })
-  }, gridRef)
-})
-
-onUnmounted(() => ctx?.revert())
-</script>
-
 <template>
   <section id="work" class="py-24 max-w-7xl mx-auto px-6" ref="gridRef">
 
@@ -67,7 +9,7 @@ onUnmounted(() => ctx?.revert())
           Projects <span class="italic text-gold">& Craft</span>
         </h2>
       </div>
-      <router-link to="/projects" class="btn-outline hidden md:inline-flex">
+      <router-link to="/projects" class="btn-outline inline-flex">
         <span>All Projects</span>
         <svg width="12" height="12" viewBox="0 0 14 14" fill="none" class="transition-transform group-hover:translate-x-0.5">
           <path d="M1 7h12M7 1l6 6-6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -105,7 +47,7 @@ onUnmounted(() => ctx?.revert())
         class="bento-animated bento-card col-span-12 md:col-span-8 relative overflow-hidden min-h-70 group cursor-pointer block"
       >
         <!-- Cover image -->
-        <img v-if="projects[0].thumbnail" :src="projects[0].thumbnail" :alt="projects[0].name" class="absolute inset-0 w-full h-full object-cover" />
+        <ProjectImage v-if="projects[0].thumbnail" :src="projects[0].thumbnail" :alt="projects[0].name" img-class="absolute inset-0 w-full h-full object-cover" />
         <!-- Background gradient / scrim -->
         <div
           class="absolute inset-0"
@@ -146,7 +88,7 @@ onUnmounted(() => ctx?.revert())
         :to="`/projects/${projects[1].id}`"
         class="bento-animated bento-card col-span-12 md:col-span-6 relative overflow-hidden min-h-60 group cursor-pointer block"
       >
-        <img v-if="projects[1].thumbnail" :src="projects[1].thumbnail" :alt="projects[1].name" class="absolute inset-0 w-full h-full object-cover" />
+        <ProjectImage v-if="projects[1].thumbnail" :src="projects[1].thumbnail" :alt="projects[1].name" img-class="absolute inset-0 w-full h-full object-cover" />
         <div
           class="absolute inset-0"
           :style="{ backgroundImage: projects[1].thumbnail
@@ -179,7 +121,7 @@ onUnmounted(() => ctx?.revert())
         :to="`/projects/${projects[2].id}`"
         class="bento-animated bento-card col-span-12 md:col-span-6 relative overflow-hidden min-h-60 group cursor-pointer block"
       >
-        <img v-if="projects[2].thumbnail" :src="projects[2].thumbnail" :alt="projects[2].name" class="absolute inset-0 w-full h-full object-cover" />
+        <ProjectImage v-if="projects[2].thumbnail" :src="projects[2].thumbnail" :alt="projects[2].name" img-class="absolute inset-0 w-full h-full object-cover" />
         <div
           class="absolute inset-0"
           :style="{ backgroundImage: projects[2].thumbnail
@@ -311,3 +253,61 @@ onUnmounted(() => ctx?.revert())
     </div>
   </section>
 </template>
+
+<script setup lang="ts">
+import { ref, onMounted, onUnmounted } from 'vue'
+import { gsap } from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import type { Project } from '@/types/Project'
+import type { SkillGroup } from '@/types/SkillGroup'
+import profile from '@/data/profile.json'
+import ProjectImage from '@/components/ProjectImage.vue'
+
+gsap.registerPlugin(ScrollTrigger)
+
+const projects: Project[] = profile.projects
+const skillGroups: SkillGroup[] = profile.skills
+const articles = profile.articles
+const certificates = profile.certificates
+
+const gridRef = ref<HTMLElement | null>(null)
+let ctx: gsap.Context
+
+onMounted(() => {
+  ctx = gsap.context(() => {
+    gsap.utils.toArray<HTMLElement>('.bento-animated').forEach((card, i) => {
+      gsap.fromTo(
+        card,
+        { y: 50, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 0.7,
+          delay: i * 0.07,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: card,
+            start: 'top 88%',
+          },
+        }
+      )
+    })
+
+    gsap.utils.toArray<HTMLElement>('.skill-bar-fill').forEach((bar) => {
+      ScrollTrigger.create({
+        trigger: bar,
+        start: 'top 85%',
+        onEnter: () => {
+          gsap.to(bar, {
+            scaleX: 1,
+            duration: 1,
+            ease: 'power3.out',
+          })
+        },
+      })
+    })
+  }, gridRef)
+})
+
+onUnmounted(() => ctx?.revert())
+</script>

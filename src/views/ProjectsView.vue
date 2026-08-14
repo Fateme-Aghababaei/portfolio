@@ -1,23 +1,3 @@
-<script setup lang="ts">
-import { onMounted } from 'vue'
-import { gsap } from 'gsap'
-import type { Project } from '@/types/Project'
-import profile from '@/data/profile.json'
-
-const projects: Project[] = profile.projects
-
-onMounted(() => {
-  gsap.from('.project-card', {
-    y: 40,
-    opacity: 0,
-    duration: 0.6,
-    stagger: 0.08,
-    ease: 'power3.out',
-    delay: 0.1,
-  })
-})
-</script>
-
 <template>
   <main class="py-32 max-w-7xl mx-auto px-6 min-h-screen">
 
@@ -49,11 +29,11 @@ onMounted(() => {
       >
         <!-- Thumbnail -->
         <div class="relative aspect-video overflow-hidden">
-          <img
+          <ProjectImage
             v-if="project.thumbnail"
             :src="project.thumbnail"
             :alt="project.name"
-            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+            img-class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
           />
           <div
             v-else
@@ -94,3 +74,24 @@ onMounted(() => {
     </div>
   </main>
 </template>
+
+<script setup lang="ts">
+import { onMounted } from 'vue'
+import { gsap } from 'gsap'
+import type { Project } from '@/types/Project'
+import profile from '@/data/profile.json'
+import ProjectImage from '@/components/ProjectImage.vue'
+
+const projects: Project[] = profile.projects
+
+onMounted(() => {
+  gsap.from('.project-card', {
+    y: 40,
+    opacity: 0,
+    duration: 0.6,
+    stagger: 0.08,
+    ease: 'power3.out',
+    delay: 0.1,
+  })
+})
+</script>

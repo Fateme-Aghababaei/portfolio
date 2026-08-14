@@ -1,34 +1,3 @@
-<script setup lang="ts">
-import { computed, onMounted } from 'vue'
-import { gsap } from 'gsap'
-import type { Project } from '@/types/Project'
-import profile from '@/data/profile.json'
-
-const props = defineProps<{ id: string }>()
-
-const projects: Project[] = profile.projects
-
-const index = computed(() => projects.findIndex((p) => String(p.id) === props.id))
-const project = computed<Project | undefined>(() => projects[index.value])
-
-const prevProject = computed(() =>
-  index.value > 0 ? projects[index.value - 1] : projects[projects.length - 1]
-)
-const nextProject = computed(() =>
-  index.value >= 0 && index.value < projects.length - 1 ? projects[index.value + 1] : projects[0]
-)
-
-onMounted(() => {
-  gsap.from('.project-detail-content', {
-    y: 30,
-    opacity: 0,
-    duration: 0.7,
-    ease: 'power3.out',
-    delay: 0.1,
-  })
-})
-</script>
-
 <template>
   <main class="py-32 max-w-4xl mx-auto px-6 min-h-screen">
 
@@ -46,11 +15,11 @@ onMounted(() => {
       </div>
 
       <!-- Cover screenshot -->
-      <img
+      <ProjectImage
         v-if="project.image"
         :src="project.image"
         :alt="project.name"
-        class="w-full rounded-2xl border border-border mb-10 object-cover"
+        img-class="w-full rounded-2xl border border-border mb-10 object-cover"
       />
       <div
         v-else
@@ -118,7 +87,7 @@ onMounted(() => {
             rel="noopener noreferrer"
             class="block rounded-xl overflow-hidden border border-border hover:border-gold/40 transition-colors duration-200"
           >
-            <img :src="shot" :alt="`${project.name} screenshot ${i + 1}`" class="w-full h-full object-cover" />
+            <ProjectImage :src="shot" :alt="`${project.name} screenshot ${i + 1}`" img-class="w-full h-full object-cover" />
           </a>
         </div>
       </div>
@@ -146,3 +115,35 @@ onMounted(() => {
     </div>
   </main>
 </template>
+
+<script setup lang="ts">
+import { computed, onMounted } from 'vue'
+import { gsap } from 'gsap'
+import type { Project } from '@/types/Project'
+import profile from '@/data/profile.json'
+import ProjectImage from '@/components/ProjectImage.vue'
+
+const props = defineProps<{ id: string }>()
+
+const projects: Project[] = profile.projects
+
+const index = computed(() => projects.findIndex((p) => String(p.id) === props.id))
+const project = computed<Project | undefined>(() => projects[index.value])
+
+const prevProject = computed(() =>
+  index.value > 0 ? projects[index.value - 1] : projects[projects.length - 1]
+)
+const nextProject = computed(() =>
+  index.value >= 0 && index.value < projects.length - 1 ? projects[index.value + 1] : projects[0]
+)
+
+onMounted(() => {
+  gsap.from('.project-detail-content', {
+    y: 30,
+    opacity: 0,
+    duration: 0.7,
+    ease: 'power3.out',
+    delay: 0.1,
+  })
+})
+</script>

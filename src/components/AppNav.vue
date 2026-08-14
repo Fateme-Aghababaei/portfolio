@@ -1,32 +1,3 @@
-<script setup lang="ts">
-import { ref, onMounted, onUnmounted } from 'vue'
-import { useWindowScroll } from '@vueuse/core'
-import profile from '@/data/profile.json'
-
-const { y } = useWindowScroll()
-const isScrolled = ref(false)
-const menuOpen   = ref(false)
-
-const links = [
-  { label: 'Projects',      href: '/#work' },
-  { label: 'Skills',    href: '/#skills' },
-  { label: 'Work Experience',    href: '/#experience' },
-  { label: 'Contact',   href: '/#contact' },
-]
-
-function toggleMenu() { menuOpen.value = !menuOpen.value }
-function closeMenu()  { menuOpen.value = false }
-
-// Scroll-based nav transparency
-let unwatch: (() => void) | null = null
-onMounted(() => {
-  const check = () => { isScrolled.value = window.scrollY > 40 }
-  window.addEventListener('scroll', check, { passive: true })
-  unwatch = () => window.removeEventListener('scroll', check)
-})
-onUnmounted(() => unwatch?.())
-</script>
-
 <template>
   <!-- Desktop nav -->
   <header
@@ -111,7 +82,7 @@ onUnmounted(() => unwatch?.())
   >
     <div
       v-if="menuOpen"
-      class="fixed inset-0 z-40 bg-ink/95 backdrop-blur-2xl flex flex-col items-center justify-center gap-10 md:hidden"
+      class="fixed inset-0 z-40 bg-ink/95 backdrop-blur-2xl flex flex-col items-center justify-start gap-10 md:hidden overflow-y-auto pt-24"
     >
       <router-link
         v-for="link in links"
@@ -127,3 +98,42 @@ onUnmounted(() => unwatch?.())
     </div>
   </Transition>
 </template>
+
+<script setup lang="ts">
+import { ref, onMounted, onUnmounted, watch } from 'vue'
+import { useWindowScroll } from '@vueuse/core'
+import profile from '@/data/profile.json'
+
+const { y } = useWindowScroll()
+const isScrolled = ref(false)
+const menuOpen   = ref(false)
+
+const links = [
+  { label: 'Projects',      href: '/projects' },
+  { label: 'Skills',    href: '/#skills' },
+  { label: 'Work Experience',    href: '/#experience' },
+  { label: 'Contact',   href: '/#contact' },
+]
+
+function toggleMenu() { menuOpen.value = !menuOpen.value }
+function closeMenu()  { menuOpen.value = false }
+
+watch(menuOpen, (isOpen) => {
+  if (isOpen) {
+    document.body.style.overflow = 'hidden'
+  } else {
+    document.body.style.overflow = ''
+  }
+})
+
+let unwatch: (() => void) | null = null
+onMounted(() => {
+  const check = () => { isScrolled.value = window.scrollY > 40 }
+  window.addEventListener('scroll', check, { passive: true })
+  unwatch = () => window.removeEventListener('scroll', check)
+})
+onUnmounted(() => {
+  unwatch?.()
+  document.body.style.overflow = ''
+})
+</script>

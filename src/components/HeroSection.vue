@@ -1,84 +1,3 @@
-<script setup lang="ts">
-import { ref, onMounted, onUnmounted } from 'vue'
-import { gsap } from 'gsap'
-import profile from '@/data/profile.json'
-
-const heroRef   = ref<HTMLElement | null>(null)
-const titleRef  = ref<HTMLElement | null>(null)
-const orbRef    = ref<HTMLElement | null>(null)
-
-const roles = profile.roles
-const currentRole   = ref(0)
-const displayedRole = ref('')
-let   typing        = true
-let   charIndex     = 0
-let   typeTimer: ReturnType<typeof setTimeout>
-
-function typeRole() {
-  const role = roles[currentRole.value]
-
-  if (typing) {
-    if (charIndex < role.length) {
-      displayedRole.value = role.slice(0, ++charIndex)
-      typeTimer = setTimeout(typeRole, 80)
-    } else {
-      typing = false
-      typeTimer = setTimeout(typeRole, 2200)
-    }
-  } else {
-    if (charIndex > 0) {
-      displayedRole.value = role.slice(0, --charIndex)
-      typeTimer = setTimeout(typeRole, 40)
-    } else {
-      typing = true
-      currentRole.value = (currentRole.value + 1) % roles.length
-      typeTimer = setTimeout(typeRole, 300)
-    }
-  }
-}
-
-const [firstName, ...restName] = profile.name.split(' ')
-const lastName = restName.join(' ')
-
-// Orb follow mouse
-function onMouseMove(e: MouseEvent) {
-  if (!heroRef.value || !orbRef.value) return
-  const rect = heroRef.value.getBoundingClientRect()
-  const x = e.clientX - rect.left
-  const y = e.clientY - rect.top
-  gsap.to(orbRef.value, {
-    x: (x - rect.width / 2) * 0.15,
-    y: (y - rect.height / 2) * 0.15,
-    duration: 1.2,
-    ease: 'power2.out',
-  })
-}
-
-let ctx: gsap.Context
-
-onMounted(() => {
-  ctx = gsap.context(() => {
-    // Page-load animation timeline
-    const tl = gsap.timeline({ defaults: { ease: 'power3.out' } })
-    tl.from('.hero-eyebrow', { y: 20, opacity: 0, duration: 0.6 })
-      .from('.hero-name',    { y: 60, opacity: 0, duration: 0.9 }, '-=0.3')
-      .from('.hero-role',    { y: 30, opacity: 0, duration: 0.7 }, '-=0.4')
-      .from('.hero-desc',    { y: 30, opacity: 0, duration: 0.7 }, '-=0.4')
-      .from('.hero-ctas',    { y: 20, opacity: 0, duration: 0.6 }, '-=0.3')
-      .from('.hero-badge',   { scale: 0.8, opacity: 0, duration: 0.5 }, '-=0.2')
-      .from('.hero-scroll',  { opacity: 0, duration: 0.6 }, '-=0.1')
-  }, heroRef)
-
-  // Start typewriter
-  typeTimer = setTimeout(typeRole, 1200)
-})
-
-onUnmounted(() => {
-  ctx?.revert()
-  clearTimeout(typeTimer)
-})
-</script>
-
 <template>
   <section
     id="home"
@@ -152,7 +71,7 @@ onUnmounted(() => {
         </div>
 
         <!-- Right side - floating badge cards -->
-        <div class="hero-badge hidden lg:flex flex-col gap-4 w-64">
+        <div class="hero-badge flex w-full max-w-full flex-col gap-4 lg:w-64 lg:mx-0 lg:justify-self-end">
 
           <!-- Status card -->
           <div class="bento-card p-5 space-y-2">
@@ -189,11 +108,83 @@ onUnmounted(() => {
         </div>
       </div>
     </div>
-
-    <!-- Scroll hint -->
-    <div class="hero-scroll absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2">
-      <span class="eyebrow text-xs">scroll</span>
-      <div class="w-px h-12 bg-linear-to-b from-border to-transparent" />
-    </div>
   </section>
 </template>
+
+<script setup lang="ts">
+import { ref, onMounted, onUnmounted } from 'vue'
+import { gsap } from 'gsap'
+import profile from '@/data/profile.json'
+
+const heroRef   = ref<HTMLElement | null>(null)
+const titleRef  = ref<HTMLElement | null>(null)
+const orbRef    = ref<HTMLElement | null>(null)
+
+const roles = profile.roles
+const currentRole   = ref(0)
+const displayedRole = ref('')
+let   typing        = true
+let   charIndex     = 0
+let   typeTimer: ReturnType<typeof setTimeout>
+
+function typeRole() {
+  const role = roles[currentRole.value]
+
+  if (typing) {
+    if (charIndex < role.length) {
+      displayedRole.value = role.slice(0, ++charIndex)
+      typeTimer = setTimeout(typeRole, 80)
+    } else {
+      typing = false
+      typeTimer = setTimeout(typeRole, 2200)
+    }
+  } else {
+    if (charIndex > 0) {
+      displayedRole.value = role.slice(0, --charIndex)
+      typeTimer = setTimeout(typeRole, 40)
+    } else {
+      typing = true
+      currentRole.value = (currentRole.value + 1) % roles.length
+      typeTimer = setTimeout(typeRole, 300)
+    }
+  }
+}
+
+const [firstName, ...restName] = profile.name.split(' ')
+const lastName = restName.join(' ')
+
+function onMouseMove(e: MouseEvent) {
+  if (!heroRef.value || !orbRef.value) return
+  const rect = heroRef.value.getBoundingClientRect()
+  const x = e.clientX - rect.left
+  const y = e.clientY - rect.top
+  gsap.to(orbRef.value, {
+    x: (x - rect.width / 2) * 0.15,
+    y: (y - rect.height / 2) * 0.15,
+    duration: 1.2,
+    ease: 'power2.out',
+  })
+}
+
+let ctx: gsap.Context
+
+onMounted(() => {
+  ctx = gsap.context(() => {
+    const tl = gsap.timeline({ defaults: { ease: 'power3.out' } })
+    tl.from('.hero-eyebrow', { y: 20, opacity: 0, duration: 0.6 })
+      .from('.hero-name',    { y: 60, opacity: 0, duration: 0.9 }, '-=0.3')
+      .from('.hero-role',    { y: 30, opacity: 0, duration: 0.7 }, '-=0.4')
+      .from('.hero-desc',    { y: 30, opacity: 0, duration: 0.7 }, '-=0.4')
+      .from('.hero-ctas',    { y: 20, opacity: 0, duration: 0.6 }, '-=0.3')
+      .from('.hero-badge',   { scale: 0.8, opacity: 0, duration: 0.5 }, '-=0.2')
+      .from('.hero-scroll',  { opacity: 0, duration: 0.6 }, '-=0.1')
+  }, heroRef)
+
+  typeTimer = setTimeout(typeRole, 1200)
+})
+
+onUnmounted(() => {
+  ctx?.revert()
+  clearTimeout(typeTimer)
+})
+</script>

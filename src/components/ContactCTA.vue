@@ -1,75 +1,8 @@
-<script setup lang="ts">
-import { ref, onMounted, onUnmounted } from 'vue'
-import { gsap } from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import emailjs from '@emailjs/browser'
-import profile from '@/data/profile.json'
-
-gsap.registerPlugin(ScrollTrigger)
-
-const sectionRef = ref<HTMLElement | null>(null)
-
-const form = ref({
-  name: '',
-  email: '',
-  message: '',
-})
-
-type Status = 'idle' | 'sending' | 'sent' | 'error'
-const status = ref<Status>('idle')
-
-async function handleSubmit() {
-  status.value = 'sending'
-
-  try {
-    await emailjs.send(
-      import.meta.env.VITE_EMAILJS_SERVICE_ID,
-      import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
-      {
-        name: form.value.name,
-        email: form.value.email,
-        message: form.value.message,
-        to_email: profile.contact.email.username,
-      },
-      { publicKey: import.meta.env.VITE_EMAILJS_PUBLIC_KEY }
-    )
-    status.value = 'sent'
-    form.value = { name: '', email: '', message: '' }
-  } catch (err) {
-    console.error('Failed to send message:', err)
-    status.value = 'error'
-  } finally {
-    setTimeout(() => { status.value = 'idle' }, 5000)
-  }
-}
-
-let ctx: gsap.Context
-
-onMounted(() => {
-  ctx = gsap.context(() => {
-    gsap.fromTo(
-      sectionRef.value,
-      { opacity: 0, y: 40 },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 0.9,
-        ease: 'power3.out',
-        scrollTrigger: { trigger: sectionRef.value, start: 'top 80%' },
-      }
-    )
-  })
-})
-
-onUnmounted(() => ctx?.revert())
-</script>
-
 <template>
   <section id="contact" ref="sectionRef" class="py-24 max-w-7xl mx-auto px-6">
 
     <div class="grid lg:grid-cols-2 gap-16 items-start">
 
-      <!-- Left: text -->
       <div class="space-y-6">
         <p class="eyebrow">Let's collaborate</p>
         <h2 class="font-display text-5xl lg:text-7xl text-cream font-light leading-none">
@@ -140,10 +73,8 @@ onUnmounted(() => ctx?.revert())
         </div>
       </div>
 
-      <!-- Right: form -->
       <form class="bento-card p-8 space-y-6" @submit.prevent="handleSubmit">
 
-        <!-- Status messages -->
         <Transition
           enter-active-class="transition-all duration-400 ease-out"
           enter-from-class="opacity-0 scale-95"
@@ -161,7 +92,7 @@ onUnmounted(() => ctx?.revert())
         </div>
         </Transition>
 
-        <div class="grid grid-cols-2 gap-4">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div class="space-y-2">
             <label class="eyebrow text-xs">Name</label>
             <input
@@ -213,3 +144,69 @@ onUnmounted(() => ctx?.revert())
     </div>
   </section>
 </template>
+
+<script setup lang="ts">
+import { ref, onMounted, onUnmounted } from 'vue'
+import { gsap } from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import emailjs from '@emailjs/browser'
+import profile from '@/data/profile.json'
+
+gsap.registerPlugin(ScrollTrigger)
+
+const sectionRef = ref<HTMLElement | null>(null)
+
+const form = ref({
+  name: '',
+  email: '',
+  message: '',
+})
+
+type Status = 'idle' | 'sending' | 'sent' | 'error'
+const status = ref<Status>('idle')
+
+async function handleSubmit() {
+  status.value = 'sending'
+
+  try {
+    await emailjs.send(
+      import.meta.env.VITE_EMAILJS_SERVICE_ID,
+      import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+      {
+        name: form.value.name,
+        email: form.value.email,
+        message: form.value.message,
+        to_email: profile.contact.email.username,
+      },
+      { publicKey: import.meta.env.VITE_EMAILJS_PUBLIC_KEY }
+    )
+    status.value = 'sent'
+    form.value = { name: '', email: '', message: '' }
+  } catch (err) {
+    console.error('Failed to send message:', err)
+    status.value = 'error'
+  } finally {
+    setTimeout(() => { status.value = 'idle' }, 5000)
+  }
+}
+
+let ctx: gsap.Context
+
+onMounted(() => {
+  ctx = gsap.context(() => {
+    gsap.fromTo(
+      sectionRef.value,
+      { opacity: 0, y: 40 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.9,
+        ease: 'power3.out',
+        scrollTrigger: { trigger: sectionRef.value, start: 'top 80%' },
+      }
+    )
+  })
+})
+
+onUnmounted(() => ctx?.revert())
+</script>

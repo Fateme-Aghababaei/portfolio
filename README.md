@@ -3,11 +3,10 @@
 ![Vue.js](https://img.shields.io/badge/Vue.js-3.x-4FC08D?logo=vue.js&logoColor=white)
 ![Vite](https://img.shields.io/badge/Vite-646CFF?logo=vite&logoColor=white)
 ![TailwindCSS](https://img.shields.io/badge/TailwindCSS-38B2AC?logo=tailwind-css&logoColor=white)
-![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-Deployed-222222?logo=github-pages)
 
 > A modern, responsive portfolio website built with **Vue.js 3** and **Vite** — designed to showcase frontend projects, technical skills, and professional contact information. Clean UI, fast performance, and recruiter‑friendly.
 
-<!-- 🔗 **Live demo:** [YOUR_PORTFOLIO_LINK](https://YOUR_PORTFOLIO_LINK) -->
+🔗 **Live demo:** [fateme-aghababaei.ir](https://fateme-aghababaei.ir/)
 
 ---
 
@@ -58,7 +57,7 @@
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/YOUR_GITHUB/portfolio.git
+git clone https://github.com/Fateme-Aghababaei/portfolio
 
 # 2. Navigate into the folder
 cd portfolio
@@ -128,11 +127,11 @@ Drop your screenshot files anywhere under `public/projects/` (e.g. `public/proje
 
 Any of the four can be omitted independently — cards and the detail hero each fall back to the existing accent-colored decorative treatment (no broken image icons) if their respective field isn't set.
 
-All three are optional — add them per-project as you have material for them.
+All four are optional — add them per-project as you have material for them.
 
 ### 📬 Making the contact form work
 
-The contact form sends email via [EmailJS](https://www.emailjs.com) directly from the browser — no backend required, so it works on GitHub Pages.
+The contact form sends email via [EmailJS](https://www.emailjs.com) directly from the browser — no backend required.
 
 1. Create a free account at [emailjs.com](https://www.emailjs.com).
 2. Add an **Email Service** (e.g. Gmail) and note its Service ID.
@@ -145,13 +144,6 @@ The contact form sends email via [EmailJS](https://www.emailjs.com) directly fro
    ```
 
 6. Restart the dev server. Submitted messages will now arrive in your inbox.
-
-### 🌐 Deploying to GitHub Pages
-
-This site uses real routes (`/projects`, `/projects/2`, …), which GitHub Pages — a static file host — doesn't natively support on refresh or direct link. A `public/404.html` fallback is already included to handle this, but check one setting depending on where you deploy:
-
-- **Custom domain or `username.github.io` (root):** works out of the box, no changes needed.
-- **Project page at `username.github.io/repo-name`:** set `pathSegmentsToKeep = 1` in `public/404.html`, and add `base: '/repo-name/'` to `vite.config.ts`.
 
 ---
 
@@ -166,8 +158,8 @@ See the [LICENSE](https://github.com/Fateme-Aghababaei/portfolio/blob/master/LIC
 
 **YOUR_NAME**  
 - GitHub: [Fateme-Aghababaei](https://github.com/Fateme-Aghababaei)  
-- Email: [YOUR_EMAIL](mailto:faghababaei81@gmail.com)  
-<!-- - Portfolio: [YOUR_PORTFOLIO_LINK](https://YOUR_PORTFOLIO_LINK) -->
+- Email: [faghababaei81@gmail.com](mailto:faghababaei81@gmail.com)  
+- Portfolio: [fateme-aghababaei.ir](https://fateme-aghababaei.ir/)
 
 ---
 
