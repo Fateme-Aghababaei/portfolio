@@ -45,9 +45,9 @@
             "date": "2026",
             "technologies": ["HTML", "Tailwind CSS", "JavaScript"],
             "accent": "#C8943A",
-            "thumbnail": "/projects/example-cover.jpg",
-            "image": "/projects/example-hero.jpg",
-            "gallery": ["/projects/example-1.jpg", "/projects/example-2.jpg"],
+            "thumbnail": "/projects/example-cover.webp",
+            "image": "/projects/example-hero.webp",
+            "gallery": ["/projects/example-1.webp", "/projects/example-2.webp"],
             "highlights": [
                 "A key feature or contribution worth calling out",
                 "Another notable detail about how you built it"

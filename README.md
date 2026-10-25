@@ -104,15 +104,15 @@ The favicon (`public/favicon.ico`) is the only asset you'll need to swap manuall
 
 ### 🖼️ Adding project screenshots
 
-Drop your screenshot files anywhere under `public/projects/` (e.g. `public/projects/my-app-cover.jpg`), then reference them from `src/data/profile.json` with a leading `/` — same convention as `resumeUrl`. Like `profile.json` and `resume.pdf`, everything under `public/projects/` is gitignored (only a `.gitkeep` placeholder is tracked) — your screenshots stay local and never get committed. Each project in the `projects` array supports four optional fields on top of the required ones:
+Drop your screenshot files anywhere under `public/projects/` (e.g. `public/projects/my-app-cover.webp`), then reference them from `src/data/profile.json` with a leading `/` — same convention as `resumeUrl`. Like `profile.json` and `resume.pdf`, everything under `public/projects/` is gitignored (only a `.gitkeep` placeholder is tracked) — your screenshots stay local and never get committed. Use WebP images to keep downloads small. For new JPG/PNG files, run `npm run optimize-images`; it converts them to WebP and removes the source files from `public/projects/`, so keep originals elsewhere if needed. Update the profile paths to use `.webp`. Existing WebP files are never overwritten. Each project in the `projects` array supports four optional fields on top of the required ones:
 
 ```json
 {
   "id": 1,
   "name": "My App",
-  "thumbnail": "/projects/my-app-thumb.jpg",
-  "image": "/projects/my-app-hero.jpg",
-  "gallery": ["/projects/my-app-1.jpg", "/projects/my-app-2.jpg"],
+  "thumbnail": "/projects/my-app-thumb.webp",
+  "image": "/projects/my-app-hero.webp",
+  "gallery": ["/projects/my-app-1.webp", "/projects/my-app-2.webp"],
   "highlights": [
     "Built a real-time dashboard with WebSocket updates",
     "Cut initial load time by 40% via code-splitting"
